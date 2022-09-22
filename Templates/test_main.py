@@ -1,4 +1,4 @@
-import machine, time, onewire, ds18x20 
+import machine, time, onewire, ds18x20 , _thread
 import InternetConnect, FileManagement, SensorLog
 
 #Initial Setup

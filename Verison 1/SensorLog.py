@@ -14,18 +14,20 @@ def SensorInitialize():
     
     return temp_sensor
     
-def SensorLog(temp_sensor):
+def SensorLog(temp_sensor, display=False):
 
     log = {}
     roms = temp_sensor.scan()
+    rtc = machine.RTC()
+    
     if roms:
-        print ('Found DS devices: ', roms)
+        #print ('Found DS devices: ', roms)
 
         temp_sensor.convert_temp()
 
         for rom in roms:
-            date_stamp = time.localtime()
-            stamp = date_stamp.isoformat()
+            timeStamp = rtc.datetime()
+            stamp = "%04d-%02d-%02d %02d:%02d:%02d"%(timeStamp[0:3] + timeStamp[4:7])
             log[stamp] = temp_sensor.read_temp(rom)
         return log
     return False

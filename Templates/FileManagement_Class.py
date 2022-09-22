@@ -3,13 +3,14 @@ import os
 
 class FileManage:
 
-    def __init__(self, filename, data) -> None:
+    def __init__(self, filename, data = {}) -> None:
         self.filename = filename
         self.data = data
         
-    def FileExist(self):
+    @staticmethod
+    def FileExist(filename):
         try: 
-            os.stat(self.filename)
+            os.stat(filename)
             return True
         except:
             return False
